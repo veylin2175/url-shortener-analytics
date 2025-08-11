@@ -12,7 +12,6 @@ type Config struct {
 	Env        string     `yaml:"env" env-default:"local"`
 	Database   Database   `yaml:"database"`
 	HTTPServer HTTPServer `yaml:"http_server"`
-	Redis      Redis      `yaml:"redis"`
 }
 
 type Database struct {
@@ -28,14 +27,6 @@ type HTTPServer struct {
 	Address     string        `yaml:"address" env-default:"localhost:8082"`
 	Timeout     time.Duration `yaml:"timeout" env-default:"4s"`
 	IdleTimeout time.Duration `yaml:"idle_timeout" env-default:"60s"`
-}
-
-type Redis struct {
-	Address  string        `yaml:"address" env-default:"localhost:6379"`
-	Password string        `yaml:"password" env-default:""`
-	DB       int           `yaml:"db" env-default:"0"`
-	PoolSize int           `yaml:"pool_size" env-default:"10"`
-	CacheTTL time.Duration `yaml:"cache_ttl" env-default:"1h"`
 }
 
 func MustLoad() *Config {
